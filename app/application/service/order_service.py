@@ -1,8 +1,9 @@
 # app\application\service\order_service.py
+
 from app.infrastructure.interactive_broker.ibkr_client import IBapiClient
 from app.infrastructure.repository.adapter.order_repository_adapter import OrderRepositoryAdapter
 from app.domain.model.order import Order
-from sqlalchemy.exc import SQLAlchemyError
+from typing import List
 
 class OrderService:
     def __init__(self, ib_client: IBapiClient, order_repository_adapter: OrderRepositoryAdapter):
@@ -27,3 +28,7 @@ class OrderService:
         # Utilizar el repositorio para guardar la orden
         self.order_repository_adapter.save(order)
         return order
+
+    def get_orders_by_user(self, user_id: int) -> List[Order]:
+        # Utiliza el repositorio para obtener todas las órdenes del usuario especificado
+        return self.order_repository_adapter.get_orders_by_user(user_id)

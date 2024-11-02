@@ -4,7 +4,6 @@ from pydantic import BaseModel, constr, conint, Field
 from typing import Optional
 
 class BuyStockRequest(BaseModel):
-    user_id: conint(gt=0)
     symbol: constr(strip_whitespace=True, min_length=1, max_length=10)
     sec_type: constr(strip_whitespace=True, min_length=1, max_length=10)
     exchange: constr(strip_whitespace=True, min_length=1, max_length=10)
