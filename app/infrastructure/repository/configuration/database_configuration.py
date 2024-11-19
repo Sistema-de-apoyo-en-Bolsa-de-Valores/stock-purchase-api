@@ -13,7 +13,7 @@ Base = declarative_base()
 
 # Crear el motor de conexión
 DATABASE_URL = (
-    f"mysql+pymysql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+    f"mysql+pymysql://root:root1234@mysql-arqui.cb4qaumg4edl.us-east-2.rds.amazonaws.com:3306/somesql"
 )
 engine = create_engine(DATABASE_URL)
 
