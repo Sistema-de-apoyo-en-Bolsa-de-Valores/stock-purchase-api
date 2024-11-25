@@ -13,12 +13,15 @@ Base = declarative_base()
 
 # Crear el motor de conexión
 DATABASE_URL = (
-    f"mysql+pymysql://root:root1234@mysql-arqui.cb4qaumg4edl.us-east-2.rds.amazonaws.com:3306/somesql"
+    f"mysql+pymysql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 )
+print(DATABASE_URL, flush=True)
 engine = create_engine(DATABASE_URL)
 
 # Crear la sesión
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def create_tables():
+    print(DATABASE_URL, flush=True)
+    print("Daniel", flush=True)
     Base.metadata.create_all(bind=engine)
